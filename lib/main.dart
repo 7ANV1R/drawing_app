@@ -1,6 +1,6 @@
+import 'package:drawing_app/blank/view/blank_page.dart';
 import 'package:flutter/material.dart';
-
-import 'home/home.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'P2-Drawing App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.dark,
+            systemNavigationBarIconBrightness: Brightness.dark,
+          ),
+          color: Colors.white,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          foregroundColor: Colors.black,
+          centerTitle: true,
+        ),
       ),
-      home: const HomePage(title: 'Drawing App for OP'),
+      home: const BlankPage(),
     );
   }
 }
