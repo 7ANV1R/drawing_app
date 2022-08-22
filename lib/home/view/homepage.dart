@@ -1,4 +1,5 @@
 import 'package:drawing_app/data/service/ui_helper.dart';
+import 'package:drawing_app/home/view/widgets/note_list_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -100,13 +101,7 @@ class _HomePageState extends State<HomePage> {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: Container(
-                      height: 200,
-                      color: Colors.grey,
-                    ),
-                  );
+                  return const NoteListCard();
                 },
               ),
             )
