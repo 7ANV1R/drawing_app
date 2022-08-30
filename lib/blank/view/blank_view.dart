@@ -38,12 +38,27 @@ class _BlankViewState extends State<BlankView> {
                       IconButton(
                         onPressed: () {
                           // i hate this kind of routing :(
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
+
+                          if (titleController.text.isNotEmpty && contentController.text.isNotEmpty) {
+                            context
+                                .read<BlankCubit>()
+                                .onTapAddNote(title: titleController.text, content: contentController.text);
+
+                            //navigation
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePage(),
+                                ),
+                                (route) => false);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          }
                         },
                         icon: const Icon(Icons.cottage_outlined),
                       ),
