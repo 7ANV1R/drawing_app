@@ -1,4 +1,4 @@
-import 'package:drawing_app/blank/view/blank_page.dart';
+import 'package:drawing_app/home/view/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
       ),
-      home: const BlankPage(),
+      home: const HomePage(),
     );
   }
 }

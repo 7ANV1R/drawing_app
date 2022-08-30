@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 class NoteListCard extends StatelessWidget {
   const NoteListCard({
     Key? key,
+    required this.title,
+    required this.content,
   }) : super(key: key);
+
+  final String title;
+  final String content;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +32,12 @@ class NoteListCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'This is note title',
+                      title,
                       style: textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
                     ),
                     kVerticalSpaceS,
                     Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                      content,
                       style: textTheme.bodyText1,
                     )
                   ],
