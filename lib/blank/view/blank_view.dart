@@ -159,8 +159,7 @@ class _BlankViewState extends State<BlankView> {
                             ),
                           ),
                           _image != null
-                              ? Container(
-                                  padding: const EdgeInsets.all(16),
+                              ? SizedBox(
                                   height: 250,
                                   width: MediaQuery.of(context).size.width,
                                   child: Stack(
@@ -170,6 +169,7 @@ class _BlankViewState extends State<BlankView> {
                                           borderRadius: BorderRadius.circular(16),
                                           image: DecorationImage(
                                             image: FileImage(_image!),
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
