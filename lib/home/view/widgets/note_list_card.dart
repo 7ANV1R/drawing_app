@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:drawing_app/data/service/ui_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +31,7 @@ class NoteListCard extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // title and content
               Expanded(
@@ -50,15 +53,19 @@ class NoteListCard extends StatelessWidget {
               // image/drawing
               imageContent == null
                   ? Container()
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 160,
-                        width: 90,
-                        color: Colors.grey,
-                        child: Text(imageContent.toString()),
+                  : Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                          image: FileImage(
+                            File(imageContent!),
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    )
+                    ),
             ],
           ),
         ),

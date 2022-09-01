@@ -22,4 +22,19 @@ class BlankCubit extends Cubit<BlankState> {
       },
     );
   }
+
+  // Future<File?> getImage(ImageSource imageSource) async {
+  //   final picker = ImagePicker();
+  //   XFile? imageFile = await picker.pickImage(source: imageSource);
+  //   if (imageFile == null) {
+  //     return null;
+  //   }
+  //   File tempFile = File(imageFile.path);
+  //   final appDir = await getApplicationDocumentsDirectory();
+  //   final fileName = basename(imageFile.path);
+  //   tempFile = await tempFile.copy('${appDir.path}/$fileName');
+  //   return setState(() {
+  //     _image = tempFile;
+  //   });
+  // }
 }
