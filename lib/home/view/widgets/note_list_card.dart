@@ -6,10 +6,14 @@ class NoteListCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.content,
+    required this.imageContent,
+    required this.drawingContent,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final String content;
+  final String? imageContent;
+  final String? drawingContent;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class NoteListCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      title ?? "untitled",
                       style: textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
                     ),
                     kVerticalSpaceS,
@@ -44,14 +48,17 @@ class NoteListCard extends StatelessWidget {
                 ),
               ),
               // image/drawing
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 160,
-                  width: 90,
-                  color: Colors.grey,
-                ),
-              )
+              imageContent == null
+                  ? Container()
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 160,
+                        width: 90,
+                        color: Colors.grey,
+                        child: Text(imageContent.toString()),
+                      ),
+                    )
             ],
           ),
         ),

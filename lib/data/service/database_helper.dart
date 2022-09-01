@@ -15,7 +15,7 @@ class Databasehelper {
     return database.query("notes", orderBy: "id DESC");
   }
 
-  static Future insertNote(Map<String, Object> data) async {
+  static Future insertNote(Map<String, dynamic> data) async {
     final database = await Databasehelper.database();
     database.insert("notes", data, conflictAlgorithm: ConflictAlgorithm.replace);
   }

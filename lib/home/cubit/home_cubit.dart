@@ -22,8 +22,8 @@ class HomeCubit extends Cubit<HomeState> {
             id: e['id'],
             title: e['title'],
             content: e['content'],
-            imageContent: e['imageContent'] ?? "something",
-            drawingContent: e['drawingContent'] ?? "something",
+            imageContent: e['imageContent'],
+            drawingContent: e['drawingContent'],
           ),
         )
         .toList();

@@ -127,6 +127,8 @@ class HomeView extends StatelessWidget {
                                     return NoteListCard(
                                       title: state.noteList[index].title ?? "untitled",
                                       content: state.noteList[index].content ?? "empty note",
+                                      imageContent: state.noteList[index].imageContent,
+                                      drawingContent: state.noteList[index].drawingContent,
                                     );
                                   },
                                 ),
