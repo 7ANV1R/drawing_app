@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:drawing_app/blank/cubit/blank_cubit.dart';
 import 'package:drawing_app/data/service/ui_helper.dart';
+import 'package:drawing_app/drawing/view/drawing_page.dart';
 import 'package:drawing_app/home/view/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,6 +97,17 @@ class _BlankViewState extends State<BlankView> {
                           getImage(ImageSource.camera);
                         },
                         icon: const Icon(Icons.add_a_photo_outlined),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DrawingPage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.draw),
                       ),
                       kHorizontalSpaceL,
                       IconButton(

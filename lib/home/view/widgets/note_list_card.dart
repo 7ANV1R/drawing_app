@@ -62,7 +62,7 @@ class NoteListCard extends StatelessWidget {
                           image: FileImage(
                             File(imageContent!),
                           ),
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
