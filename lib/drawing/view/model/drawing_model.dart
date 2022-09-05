@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class DrawingPaths extends Equatable {
   final Offset offset;
+  final Paint paint;
   const DrawingPaths({
     required this.offset,
+    required this.paint,
   });
 
   @override

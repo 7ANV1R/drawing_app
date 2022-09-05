@@ -14,20 +14,14 @@ class CustomDrawing extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..isAntiAlias = true
-      ..strokeWidth = 5.0
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-
     for (int i = 0; i < drawingPaths.length - 1; i++) {
       if (drawingPaths[i] != null && drawingPaths[i + 1] != null) {
-        canvas.drawLine(drawingPaths[i]!.offset, drawingPaths[i + 1]!.offset, paint);
+        canvas.drawLine(drawingPaths[i]!.offset, drawingPaths[i + 1]!.offset, drawingPaths[i]!.paint);
       } else if (drawingPaths[i] != null && drawingPaths[i + 1] == null) {
         offsetsList.clear();
         offsetsList.add(drawingPaths[i]!.offset);
 
-        canvas.drawPoints(PointMode.points, offsetsList, paint);
+        canvas.drawPoints(PointMode.points, offsetsList, drawingPaths[i]!.paint);
       }
     }
   }
