@@ -64,6 +64,15 @@ class _DrawingViewState extends State<DrawingView> {
       builder: (context, state) {
         return state is DrawingInitial
             ? Scaffold(
+                appBar: AppBar(
+                  actions: [
+                    TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.save),
+                      label: Text('Save'),
+                    )
+                  ],
+                ),
                 body: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -155,7 +164,10 @@ class _DrawingViewState extends State<DrawingView> {
                                   drawingPaths.clear();
                                 });
                               },
-                              icon: const Icon(Icons.layers_clear),
+                              icon: Icon(
+                                Icons.layers_clear,
+                                color: selectedColor,
+                              ),
                             ),
                           ],
                         ),
