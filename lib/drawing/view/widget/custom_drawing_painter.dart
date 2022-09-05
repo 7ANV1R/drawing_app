@@ -2,27 +2,34 @@
 
 import 'dart:ui';
 
+import 'package:drawing_app/drawing/view/model/drawing_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawing extends CustomPainter {
-  List<Offset> points;
-  CustomDrawing({
-    required this.points,
-  });
+  final List<DrawingPaths?> drawingPaths;
+
+  CustomDrawing(this.drawingPaths);
+
+  List<Offset> offsetsList = [];
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint background = Paint()..color = Colors.white;
-    Rect rect = Rect.fromLTWH(0, 0, size.width, size.height);
-    canvas.drawRect(rect, background);
-
     final paint = Paint()
       ..isAntiAlias = true
       ..strokeWidth = 5.0
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
-    canvas.drawPoints(PointMode.polygon, points, paint);
+    for (int i = 0; i < drawingPaths.length - 1; i++) {
+      if (drawingPaths[i] != null && drawingPaths[i + 1] != null) {
+        canvas.drawLine(drawingPaths[i]!.offset, drawingPaths[i + 1]!.offset, paint);
+      } else if (drawingPaths[i] != null && drawingPaths[i + 1] == null) {
+        offsetsList.clear();
+        offsetsList.add(drawingPaths[i]!.offset);
+
+        canvas.drawPoints(PointMode.points, offsetsList, paint);
+      }
+    }
   }
 
   @override
