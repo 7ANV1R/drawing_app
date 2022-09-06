@@ -1,9 +1,11 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:drawing_app/blank/cubit/blank_cubit.dart';
 import 'package:drawing_app/data/service/ui_helper.dart';
 import 'package:drawing_app/drawing/view/drawing_page.dart';
 import 'package:drawing_app/home/view/homepage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,6 +24,7 @@ class _BlankViewState extends State<BlankView> {
   late TextEditingController contentController;
 
   File? _image;
+  Uint8List? drawingContent;
   final picker = ImagePicker();
 
   Future getImage(ImageSource imageSource) async {
@@ -99,13 +102,18 @@ class _BlankViewState extends State<BlankView> {
                         icon: const Icon(Icons.add_a_photo_outlined),
                       ),
                       IconButton(
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () async {
+                          final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const DrawingPage(),
                             ),
                           );
+
+                          setState(() {
+                            drawingContent = result;
+                          });
+                          log('image');
                         },
                         icon: const Icon(Icons.draw),
                       ),
@@ -185,6 +193,38 @@ class _BlankViewState extends State<BlankView> {
                                           ),
                                         ),
                                       ),
+                                    ],
+                                  ),
+                                )
+                              : Container(),
+                          kVerticalSpaceM,
+                          drawingContent != null
+                              ? SizedBox(
+                                  height: 250,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        height: 250,
+                                        width: MediaQuery.of(context).size.width,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(16),
+                                          color: const Color.fromARGB(255, 235, 224, 236),
+                                        ),
+                                        child: Image.memory(
+                                          drawingContent!,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      )
+                                      // Container(
+                                      //   decoration: BoxDecoration(
+                                      //     borderRadius: BorderRadius.circular(16),
+                                      //     image: DecorationImage(
+                                      //       image: Image.memory(drawingContent!),
+                                      //       fit: BoxFit.cover,
+                                      //     ),
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 )
